@@ -1,0 +1,20 @@
+#step1:Check the quality of fastq files with FASTQC
+fastqc -t 4 *.gz
+mulitqc ./
+
+#step2:Low-quality bases of FASTQ were removed by Trim_Galore
+ls *1.fq.gz >1
+ls *2.fq.gz >2
+paste 1 2 > config
+cat config | while read id; do arr=(${id});fq1=${arr[0]};fq2=${arr[1]};trim_galore -q 25 --phred33 --length 60 --stringency 15 --paired -o ./clean $fq1 $fq2;done #The example analysis shown
+ 
+#step3:FASTQ files were aligned to the mouse genome mm10 using HISAT2
+ls *gz |while read id; do hisat2 -p 8 -x /home/data_HD_1/reference/index/hisat2/mouse/mm10/genome -1 ${id}_1.fq.gz -2 ${id}_2.fq.gz -S ${id}_RNA-Seq.hisat2.sam; done #The example analysis shown 
+
+ls *.sam | while read id; do (samtools sort -O bam -@ 12 -o $(basename ${id} .sam).bam ${id}); done
+ls *.bam | while read id; do (samtools sort ${id} -o $(basename ${id} .bam)_sorted.bam); done
+ls *_sorted.bam | while read id; do samtools index ${id}; done
+
+#step4:FeatureCount software was used to calculate gene expression from aligned bam files
+gtf="/home/wangfengsheng/data_HD_1/reference/gtf/mouse/gencode.vM25.annotation.gff3"
+featureCounts -T 8 -p -t exon -g gene_id -a $gtf -o all.id.txt *sorted.bam 1> counts.id.log 2>&1 #The example analysis shown
