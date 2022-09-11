@@ -14,7 +14,7 @@ Most scripts rely on the use of basic read aligment and processing tools:
 - DeepTools https://deeptools.readthedocs.io/en/develop/index.html
 - HOMER http://homer.ucsd.edu/homer/index.html
 - R https://www.r-project.org/
-
+- MAGeCK https://sourceforge.net/projects/mageck/
 
 
 ## Pipelines for ChIP-seq and RNA-seq
