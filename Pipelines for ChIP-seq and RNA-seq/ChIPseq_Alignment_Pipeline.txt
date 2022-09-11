@@ -1,0 +1,19 @@
+#step1:Check the quality of fastq files with FASTQC
+fastqc -t 4 *.gz
+mulitqc ./
+
+#step2:Low-quality bases of FASTQ were removed by Trim_Galore
+ls *1.fq.gz >1
+ls *2.fq.gz >2
+paste 1 2 > config
+cat config | while read id; do arr=(${id});fq1=${arr[0]};fq2=${arr[1]};trim_galore -q 25 --phred33 --length 60 --stringency 15 --paired -o ./clean $fq1 $fq2;done #The example analysis shown
+
+#step3:FASTQ files were aligned to the mouse genome mm10 using BOWTIE2
+ls *gz |while read id; do bowtie2 -p 12 -x /home/wangfengsheng/data_HD_1/reference/index/bowtie2/mouse/mm10 -1 ${id}_ChIP-Seq_1_val_1.fq.gz -2 ${id}_ChIP-Seq_2_val_2.fq.gz -S ${id}_ChIP-Seq.bowtie2.sam; done #The example analysis shown
+
+ls *.sam | while read id; do (samtools sort -O bam -@ 12 -o $(basename ${id} .sam).bam ${id}); done
+ls *.bam | while read id; do (samtools sort ${id} -o $(basename ${id} .bam)_sorted.bam); done
+ls *_sorted.bam | while read id; do samtools index ${id}; done
+
+#step4：Binding sites of DNA-binding proteins were identified by model-based analysis of ChIP-seq peak caller(MACS2)
+ls *merged_sorted.bam | while read id; do macs2 callpeak -c *control_sorted.bam -t $id -q 0.05 -f BAM -g mm -n $(basename ${id} .bam) 2> $id.log; done #The example analysis shown
