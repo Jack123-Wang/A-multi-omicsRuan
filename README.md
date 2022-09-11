@@ -17,7 +17,7 @@ Most scripts rely on the use of basic read aligment and processing tools:
 
 
 
-## Summary of the read alignment and processing pipelines for ChIP-seq and RNA-seq
+## Pipelines for ChIP-seq and RNA-seq
 
 RNAseq_Alignment_Pipeline.txt
 
