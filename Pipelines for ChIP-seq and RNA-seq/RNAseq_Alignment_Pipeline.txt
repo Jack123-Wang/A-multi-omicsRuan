@@ -20,4 +20,4 @@ gtf="/home/wangfengsheng/data_HD_1/reference/gtf/mouse/gencode.vM25.annotation.g
 featureCounts -T 8 -p -t exon -g gene_id -a $gtf -o all.id.txt *sorted.bam 1> counts.id.log 2>&1 #The example analysis shown
 
 #step5:caculate RPKM
-#Calculate RPKM using RPKM.R file
+#Calculate RPKM using RPKM.R file(https://github.com/Jack123-Wang/A-multi-omicsRuan/blob/main/Pipelines%20for%20ChIP-seq%20and%20RNA-seq/RPKM.R)
