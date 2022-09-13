@@ -17,8 +17,16 @@ Most scripts rely on the use of basic read aligment and processing tools:
 - MAGeCK https://sourceforge.net/projects/mageck/
 
 
+## MAGeCK
+
+MAGeCK.sh
+
 ## Pipelines for ChIP-seq and RNA-seq
 
 RNAseq_Alignment_Pipeline.txt
 
 ChIPseq_Alignment_Pipeline.txt
+
+## Module expression activity analysis & Survival analysis
+
+Analysis in GBMLGG.sh
