@@ -10,9 +10,9 @@ Most scripts rely on the use of basic read aligment and processing tools:
 - Trim_galore https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/
 - Samtools http://samtools.sourceforge.net/
 - BEDtools https://bedtools.readthedocs.io/en/latest/
-- STAR https://github.com/alexdobin/STAR
+- Hisat2 https://daehwankimlab.github.io/hisat2/
+- Bowtie2 http://bowtie-bio.sourceforge.net/bowtie2/
 - DeepTools https://deeptools.readthedocs.io/en/develop/index.html
-- HOMER http://homer.ucsd.edu/homer/index.html
 - R https://www.r-project.org/
 - MAGeCK https://sourceforge.net/projects/mageck/
 
