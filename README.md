@@ -16,7 +16,6 @@ Most scripts rely on the use of basic read aligment and processing tools:
 - R https://www.r-project.org/
 - MAGeCK https://sourceforge.net/projects/mageck/
 
-
 ## MAGeCK
 
 MAGeCK.sh
@@ -30,3 +29,10 @@ ChIPseq_Alignment_Pipeline.txt
 ## Module expression activity analysis & Survival analysis
 
 Analysis in GBMLGG.sh
+
+
+
+
+
+
+111111
