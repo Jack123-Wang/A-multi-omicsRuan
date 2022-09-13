@@ -18,3 +18,6 @@ ls *_sorted.bam | while read id; do samtools index ${id}; done
 #step4:FeatureCount software was used to calculate gene expression from aligned bam files
 gtf="/home/wangfengsheng/data_HD_1/reference/gtf/mouse/gencode.vM25.annotation.gff3"
 featureCounts -T 8 -p -t exon -g gene_id -a $gtf -o all.id.txt *sorted.bam 1> counts.id.log 2>&1 #The example analysis shown
+
+#step5:caculate RPKM
+#Calculate RPKM using RPKM.R file
